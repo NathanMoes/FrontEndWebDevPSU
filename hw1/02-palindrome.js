@@ -19,13 +19,13 @@ function handleInput(event) {
     let left = input[i];
     let right = input[inputLength - 1 - i];
     if (left !== right) {
-      result.textContent = "it is not a palindrome!";
+      result.textContent = "It is not a palindrome!";
       result.classList.remove("text-success");
       result.classList.add("text-danger");
       return;
     }
   }
-  result.textContent = "it is indeed a palindrome!";
+  result.textContent = "It is indeed a palindrome!";
   result.classList.remove("text-danger");
   result.classList.add("text-success");
 }
