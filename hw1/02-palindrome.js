@@ -11,6 +11,8 @@ function handleInput(event) {
   }
   if (input[0] == "-") {
     result.textContent = "Only positive numbers can be palindromes!";
+    result.classList.remove("text-success");
+    result.classList.add("text-danger");
     return;
   }
   for (let i = 0; i < inputLength / 2; i++) {
@@ -18,8 +20,12 @@ function handleInput(event) {
     let right = input[inputLength - 1 - i];
     if (left !== right) {
       result.textContent = "it is not a palindrome!";
+      result.classList.remove("text-success");
+      result.classList.add("text-danger");
       return;
     }
   }
   result.textContent = "it is indeed a palindrome!";
+  result.classList.remove("text-danger");
+  result.classList.add("text-success");
 }
