@@ -1,5 +1,7 @@
 ## CSS Selectors - CSS Diner Game
 
+Auto format on save is bug-ing stuff up for some special chars, so they will be escaped with \
+
 1. plate
 2. bento
 3. #fancy
@@ -9,7 +11,7 @@
 7. orange.small
 8. bento > orange.small
 9. plate, bento
-10. -
+10. \*
 11. plate > \*
 12. plate + apple
 13.
