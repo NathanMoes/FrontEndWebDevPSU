@@ -1,5 +1,5 @@
 const elem = document.querySelector('input');
-const result = document.querySelector('#result');
+const result = document.getElementById('result');
 
 elem.addEventListener('input', handleInput);
 function handleInput(event) {
