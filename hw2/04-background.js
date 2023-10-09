@@ -1,5 +1,4 @@
 // Add your code here
-const RANDOM_MAGIC_SEED_NUMBER = 123912322;
 const elementToStyle = document.querySelector('body');
 const input = document.querySelector('input');
 const buttonInput = document.querySelector('button');
