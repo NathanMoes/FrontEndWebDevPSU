@@ -8,6 +8,7 @@ let randomColorEnabled = false;
 
 input.addEventListener('input', handleInput);
 buttonInput.addEventListener('click', handleButtonPress);
+window.onload(setRandomColor(elementToStyle))
 
 function handleButtonPress(event) {
   event.preventDefault();
