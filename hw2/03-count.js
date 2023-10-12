@@ -3,7 +3,7 @@ const input = document.querySelector('input');
 const textToSearchFrom = document.querySelector('p');
 const originalText = textToSearchFrom.innerHTML;
 
-input.addEventListener('input', handleInput);
+input.addEventListener('keydown', handleInput);
 
 function handleInput(event) {
   let textToSearchFor = event.target.value;
