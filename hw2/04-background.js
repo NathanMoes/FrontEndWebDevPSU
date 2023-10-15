@@ -4,11 +4,11 @@ const input = document.querySelector('input');
 const buttonInput = document.querySelector('button');
 let intervalTime = 0;
 let interval = null;
-let randomColorEnabled = false;
+let randomColorEnabled = true;
 
 input.addEventListener('input', handleInput);
 buttonInput.addEventListener('click', handleButtonPress);
-window.onload(setRandomColor(elementToStyle))
+window.addEventListener('load', handelOnLoad());
 
 function handleButtonPress(event) {
   event.preventDefault();
@@ -47,8 +47,17 @@ function setRandomColor(targetElement) {
   const r = Math.floor(Math.random() * 256);
   const g = Math.floor(Math.random() * 256);
   const b = Math.floor(Math.random() * 256);
-  const a = Math.random();
+  let a = Math.random();
+  if (a > 0.8){ // make sure the alpha is dimmed
+    a -= 0.5;
+  }
   const color = `rgba(${r}, ${g}, ${b}, ${a})`;
   targetElement.style.backgroundColor = color;
   console.log(color);
+}
+
+function handelOnLoad(){
+  setRandomColor(elementToStyle);
+  intervalTime = 3;
+  startInterval();
 }
