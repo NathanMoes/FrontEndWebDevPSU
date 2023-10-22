@@ -29,7 +29,7 @@ function handleButtonPress(event) {
 
 function handleInput(event) {
   intervalTime = Number(event.target.value);
-  if (randomColorEnabled) {
+  if (!randomColorEnabled) {
     clearInterval(interval);
     startInterval();
   }
