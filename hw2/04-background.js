@@ -18,18 +18,20 @@ function handleButtonPress(event) {
     buttonInput.innerText = 'Start';
     buttonInput.classList.remove('btn-danger');
     buttonInput.classList.add('btn-primary');
+    input.removeAttribute('disabled');
   } else {
     startInterval();
     randomColorEnabled = true;
     buttonInput.innerText = 'Stop';
     buttonInput.classList.remove('btn-primary');
     buttonInput.classList.add('btn-danger');
+    input.setAttribute('disabled', 'true');
   }
 }
 
 function handleInput(event) {
   intervalTime = Number(event.target.value);
-  if (!randomColorEnabled) {
+  if (randomColorEnabled) {
     clearInterval(interval);
     startInterval();
   }
