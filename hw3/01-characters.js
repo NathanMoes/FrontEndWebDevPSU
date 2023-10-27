@@ -18,7 +18,7 @@ fetch(url)
     console.log('API call completed');
   }); // why not have a finally? Sounds like a decent idea!
 
-  // remove all the child elements for a given element. Just in case you want some fancy stuff
+// remove all the child elements for a given element. Just in case you want some fancy stuff
 function removeAllChildren(element) {
   while (element.firstChild !== null) {
     element.removeChild(element.firstChild);
@@ -42,6 +42,9 @@ function displayCharacters(characters, location) {
     image.src = character.imageUrl;
     image.alt = character.fullName;
     image.className = 'card-img-top';
+    image.style.width = '100%';
+    image.style.height = '200px';
+    image.style.objectFit = 'cover';
     card.appendChild(image);
 
     // create a card body for the name and title
