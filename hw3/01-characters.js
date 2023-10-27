@@ -54,13 +54,13 @@ function displayCharacters(characters, location) {
     // put in the characters name
     let nameElement = document.createElement('h2');
     nameElement.textContent = character.fullName;
-    nameElement.className = 'card-title';
+    nameElement.className = 'card-title text-center';
     cardBody.appendChild(nameElement);
 
     // add their title or whatever it is they are known by. Guess call sign might be accurate?
-    let titleElement = document.createElement('p');
+    let titleElement = document.createElement('h5');
     titleElement.textContent = character.title;
-    titleElement.className = 'card-text';
+    titleElement.className = 'card-text text-center';
     cardBody.appendChild(titleElement);
 
     card.appendChild(cardBody);
