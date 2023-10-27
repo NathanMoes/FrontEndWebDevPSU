@@ -35,7 +35,7 @@ function displayCharacters(characters, location) {
 
     // create a card element to contain each character
     let card = document.createElement('div');
-    card.className = 'card mb-4';
+    card.className = 'card mb-4 bg-transparent';
 
     // add the image of the character to the card
     let image = document.createElement('img');
