@@ -25,6 +25,16 @@ function removeAllChildren(element) {
   }
 }
 
+function onMouseOverHandler(element) {
+  element.style.backgroundColor = 'darkblue';
+  element.style.color = 'white';
+}
+
+function onMouseOutHandler(element) {
+  element.style.backgroundColor = 'transparent';
+  element.style.color = 'black';
+}
+
 function displayCharacters(characters, location) {
   removeAllChildren(location);
 
@@ -46,6 +56,8 @@ function displayCharacters(characters, location) {
     image.style.height = '200px';
     image.style.objectFit = 'cover';
     card.appendChild(image);
+    card.addEventListener('mouseover', onMouseOverHandler(card));
+    card.addEventListener('mouseout', onMouseOutHandler(card));
 
     // create a card body for the name and title
     let cardBody = document.createElement('div');
