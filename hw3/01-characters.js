@@ -18,21 +18,11 @@ fetch(url)
     console.log('API call completed');
   }); // why not have a finally? Sounds like a decent idea!
 
-// remove all the child elements for a given element. Just in case you want some fancy stuff
+// remove all the child elements for a given element
 function removeAllChildren(element) {
   while (element.firstChild !== null) {
     element.removeChild(element.firstChild);
   }
-}
-
-function onMouseOverHandler(element) {
-  element.style.backgroundColor = 'darkblue';
-  element.style.color = 'white';
-}
-
-function onMouseOutHandler(element) {
-  element.style.backgroundColor = 'transparent';
-  element.style.color = 'black';
 }
 
 function displayCharacters(characters, location) {
@@ -41,44 +31,45 @@ function displayCharacters(characters, location) {
   characters.forEach((character) => {
     // wrap the column so that we can use grid for display of it's items
     let colWrapper = document.createElement('div');
-    colWrapper.className = 'col-6 col-lg-3';
+    colWrapper.classList.add('col-6', 'col-lg-3', 'col-wrapper');
 
     // create a card element to contain each character
     let card = document.createElement('div');
-    card.className = 'card mb-4 bg-transparent border-0';
+    card.classList.add(
+      'card',
+      'mb-4',
+      'bg-transparent',
+      'border-0',
+      'custom-card'
+    );
 
     // add the image of the character to the card
     let image = document.createElement('img');
     image.src = character.imageUrl;
     image.alt = character.fullName;
-    image.className = 'card-img-top';
-    image.style.width = '100%';
-    image.style.height = '200px';
-    image.style.objectFit = 'cover';
+    image.classList.add('card-img-top');
     card.appendChild(image);
-    card.addEventListener('mouseover', onMouseOverHandler(card));
-    card.addEventListener('mouseout', onMouseOutHandler(card));
 
     // create a card body for the name and title
     let cardBody = document.createElement('div');
-    cardBody.className = 'card-body';
+    cardBody.classList.add('card-body');
 
     // put in the characters name
     let nameElement = document.createElement('h2');
     nameElement.textContent = character.fullName;
-    nameElement.className = 'card-title text-center';
+    nameElement.classList.add('card-title', 'text-center');
     cardBody.appendChild(nameElement);
 
     // add their title or whatever it is they are known by. Guess call sign might be accurate?
     let titleElement = document.createElement('h5');
     titleElement.textContent = character.title;
-    titleElement.className = 'card-text text-center';
+    titleElement.classList.add('card-text', 'text-center');
     cardBody.appendChild(titleElement);
-
+    // append the card body to the card
     card.appendChild(cardBody);
-
+    // add the card to the column wrapper
     colWrapper.appendChild(card);
-
+    // add it to the location passed in
     location.appendChild(colWrapper);
   });
 }
