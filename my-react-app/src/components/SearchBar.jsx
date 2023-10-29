@@ -4,7 +4,8 @@ const SearchBar = (props) => {
   };
   return (
     <div className="search-bar text-center">
-      <label for="searchBarInput"></label>
+      <label for="searchBarInput">Character to search </label>
+      <br />
       <input
         id="searchBarInput"
         type="text"
