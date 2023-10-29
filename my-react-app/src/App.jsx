@@ -11,12 +11,9 @@ function App() {
     <Router>
       <Navbar bg="light" expand="lg">
         <Navbar.Brand as={Link} to="/">
-          Thrones API
+          Home
         </Navbar.Brand>{' '}
         <Nav bg="dark">
-          <Nav.Link className="" as={Link} to="/">
-            Home
-          </Nav.Link>
           <Nav.Link className="" as={Link} to="/search">
             Search
           </Nav.Link>
