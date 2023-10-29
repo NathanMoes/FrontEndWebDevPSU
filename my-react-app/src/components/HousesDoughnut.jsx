@@ -171,7 +171,7 @@ const HousesDoughnut = () => {
       labels: labels,
       datasets: [
         {
-          label: 'Thrones API houses doughnut',
+          label: 'count',
           data: familyData,
           backgroundColor: backgroundColors,
           borderColor: borderColors,
