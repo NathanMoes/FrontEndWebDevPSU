@@ -53,6 +53,48 @@ function standardizeHouseName(name) {
   }
 }
 
+function isOutlierName(name) {
+  const toComp = name.toLowerCase();
+  if (toComp.includes('sandor')) {
+    return true;
+  } else if (toComp.includes('brienne')) {
+    return true;
+  } else if (toComp.includes('daario')) {
+    return true;
+  } else if (toComp.includes('melisandre')) {
+    return true;
+  } else if (toComp.includes('wylis')) {
+    return true;
+  } else if (toComp.includes('qyburn')) {
+    return true;
+  }
+  return false;
+}
+
+function getFullNameCorrected(name) {
+  const toComp = name.toLowerCase();
+  if (toComp.includes('sandor')) {
+    return 'The Hound';
+  } else if (toComp.includes('brienne')) {
+    return 'Brienne of Tarth';
+  } else if (toComp.includes('daario')) {
+    return 'Daario';
+  } else if (toComp.includes('melisandre')) {
+    return 'Melisandre';
+  } else if (toComp.includes('wylis')) {
+    return 'Hodor';
+  } else if (toComp.includes('qyburn')) {
+    return 'Qyburn';
+  }
+}
+
+function capitalizeHouseNames(name) {
+  return name
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
 const Search = () => {
   const [toSearch, setToSearch] = useState('');
   const [data, setData] = useState([]);
@@ -64,7 +106,19 @@ const Search = () => {
         tempData.map((character) => {
           return {
             ...character,
-            lastName: standardizeHouseName(character.lastName),
+            lastName: capitalizeHouseNames(
+              standardizeHouseName(character.lastName)
+            ),
+            firstName: capitalizeHouseNames(
+              standardizeHouseName(character.firstName)
+            ),
+            fullName: isOutlierName(character.firstName)
+              ? getFullNameCorrected(character.firstName)
+              : capitalizeHouseNames(
+                  character.firstName +
+                    ' ' +
+                    standardizeHouseName(character.lastName)
+                ),
           };
         })
       );
@@ -80,10 +134,7 @@ const Search = () => {
     return results.map((result) => (
       <div>
         <img src={result.imageUrl} alt="" className="" />
-        <p className="text-center">
-          {result.firstName} {result.lastName}
-        </p>
-        <p className="text-center">{result.title}</p>
+        <p className="text-center">{result.fullName}</p>
       </div>
     ));
   };
@@ -111,7 +162,9 @@ const Search = () => {
         <p>Search for a house in the thrones api</p>
       </div>
       <SearchBar placeHolder={'First or Last name'} onChange={handleOnChange} />
-      {displayResult(searchResult)}
+      <div className="d-flex flex-column mx-auto">
+        {displayResult(searchResult)}
+      </div>
     </div>
   );
 };
