@@ -111,7 +111,7 @@ function standardizeHouseName(name) {
     return 'House Unknown';
   } else {
     // For all other names, capitalize the name given. As it is their last name most of the time
-    // aka they are their own house
+    // aka they are their own house. And other houses that are correct just caps em
     return capitalizeHouseNames(name);
   }
 }
@@ -128,16 +128,16 @@ const renderChart = async () => {
   const data = await fetchApiData();
   console.log(data);
   const familyCounts = data.reduce((acc, char) => {
-    const correctedFamilyName = standardizeHouseName(char.family);
+    const correctedFamilyName = standardizeHouseName(char.family); // fix the names if need be
     if (char.family) {
-      acc[correctedFamilyName] = (acc[correctedFamilyName] || 0) + 1;
+      acc[correctedFamilyName] = (acc[correctedFamilyName] || 0) + 1; // map by family name {houseName: count}
     }
     return acc;
   }, {});
 
-  const labels = Object.keys(familyCounts);
-  const familyData = Object.values(familyCounts);
-  const donutChart = document.querySelector('.donut-chart');
+  const labels = Object.keys(familyCounts); // get keys aka houseNames
+  const familyData = Object.values(familyCounts); // get the values aka count
+  const donutChart = document.querySelector('.donut-chart'); // find where to append it
 
   new Chart(donutChart, {
     type: 'doughnut',
@@ -145,7 +145,7 @@ const renderChart = async () => {
       labels: labels,
       datasets: [
         {
-          label: 'My First Dataset',
+          label: 'Thrones API houses doughnut',
           data: familyData,
           backgroundColor: backgroundColors,
           borderColor: borderColors,
