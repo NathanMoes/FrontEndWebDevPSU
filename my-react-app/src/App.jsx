@@ -4,23 +4,27 @@ import './App.css';
 import Home from './pages/Home';
 import Houses from './pages/Houses';
 import Search from './pages/Search';
+import { Navbar, Nav } from 'react-bootstrap';
 
 function App() {
   return (
     <Router>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/search">Search</Link>
-          </li>
-          <li>
-            <Link to="/houses">Houses</Link>
-          </li>
-        </ul>
-      </nav>
+      <Navbar bg="light" expand="lg">
+        <Navbar.Brand as={Link} to="/">
+          Thrones API
+        </Navbar.Brand>{' '}
+        <Nav bg="dark">
+          <Nav.Link className="" as={Link} to="/">
+            Home
+          </Nav.Link>
+          <Nav.Link className="" as={Link} to="/search">
+            Search
+          </Nav.Link>
+          <Nav.Link className="" as={Link} to="/houses">
+            Houses
+          </Nav.Link>
+        </Nav>
+      </Navbar>
 
       <hr />
 

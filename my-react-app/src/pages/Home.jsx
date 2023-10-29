@@ -1,8 +1,8 @@
 const Home = () => {
   return (
-    <div>
+    <div className="">
       <h1>Home</h1>
-      <p>Welcome to my React app!</p>
+      <p>A welcome message</p>
     </div>
   );
 };
