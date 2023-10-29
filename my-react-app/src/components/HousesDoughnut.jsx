@@ -185,7 +185,11 @@ const HousesDoughnut = () => {
     getTheData();
   }, []);
 
-  return data !== null ? <Doughnut data={data} /> : null;
+  return data !== null ? (
+    <Doughnut data={data} />
+  ) : (
+    <p className="text-center">loading...</p>
+  );
 };
 
 export default HousesDoughnut;
