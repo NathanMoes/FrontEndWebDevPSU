@@ -1,0 +1,36 @@
+:root {
+  --black: #020202;
+  --white: #ffffff;
+  --blue: #00425c;
+  --cyan: #17a2b8;
+}
+
+h1 {
+  text-align: center;
+}
+
+.donut-chart {
+  border-radius: 0.8rem;
+  background-color: var(--white);
+}
+
+img {
+  padding-top: 5%;
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+.custom-card {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.col-wrapper:hover {
+  background-color: var(--blue);
+}
+
+.col-wrapper:hover * {
+  color: var(--white);
+}
