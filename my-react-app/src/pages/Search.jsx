@@ -11,14 +11,63 @@ const fetchApiData = async () => {
   return data;
 };
 
+function standardizeHouseName(name) {
+  if (!name) return name;
+
+  name = name.trim().toLowerCase();
+
+  if (name.includes('stark')) {
+    return 'Stark';
+  } else if (name.includes('lannister') || name.includes('lanister')) {
+    return 'Lannister';
+  } else if (
+    name.includes('targaryen') ||
+    name.includes('targaryn') ||
+    name.includes('targaryan')
+  ) {
+    return 'Targaryen';
+  } else if (name.includes('baratheon')) {
+    return 'Baratheon';
+  } else if (name.includes('greyjoy')) {
+    return 'Greyjoy';
+  } else if (name.includes('martell')) {
+    return 'Martell';
+  } else if (name.includes('arryn')) {
+    return 'Arryn';
+  } else if (name.includes('frey')) {
+    return 'Frey';
+  } else if (name.includes('tyrell')) {
+    return 'Tyrell';
+  } else if (name.includes('tully')) {
+    return 'Tully';
+  } else if (
+    name.includes('none') ||
+    name.includes('unknown') ||
+    name.includes('unkown')
+  ) {
+    return '';
+  } else {
+    // For all other names, capitalize the name given. As it is their last name most of the time
+    // aka they are their own house. And other houses that are correct just caps em
+    return name;
+  }
+}
+
 const Search = () => {
   const [toSearch, setToSearch] = useState('');
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {
     fetchApiData().then((tempData) => {
-      setData(tempData);
+      setData(
+        tempData.map((character) => {
+          return {
+            ...character,
+            lastName: standardizeHouseName(character.lastName),
+          };
+        })
+      );
     });
   }, []);
 
@@ -29,17 +78,11 @@ const Search = () => {
 
   const displayResult = (results) => {
     return results.map((result) => (
-      // <div className="searchResult" key={result.id}>
-      //   <h1>{result.fullName}</h1>
-      //   <p>id: {result.id}</p>
-      //   <p>title: {result.title}</p>
-      //   <p>family: {result.family}</p>
-      //   <p>image: {result.imageUrl}</p>
-      //   <p>house: {result.house}</p>
-      // </div>
       <div>
         <img src={result.imageUrl} alt="" className="" />
-        <p className="text-center">{result.fullName}</p>
+        <p className="text-center">
+          {result.firstName} {result.lastName}
+        </p>
         <p className="text-center">{result.title}</p>
       </div>
     ));
