@@ -9,7 +9,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 function App() {
   return (
     <Router>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="light" expand="lg" active>
         <Navbar.Brand as={Link} to="/">
           Home
         </Navbar.Brand>{' '}
