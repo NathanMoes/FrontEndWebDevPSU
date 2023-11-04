@@ -101,28 +101,33 @@ const Search = () => {
   const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {
-    fetchApiData().then((tempData) => {
-      setData(
-        tempData.map((character) => {
-          return {
-            ...character,
-            lastName: capitalizeHouseNames(
-              standardizeHouseName(character.lastName)
-            ),
-            firstName: capitalizeHouseNames(
-              standardizeHouseName(character.firstName)
-            ),
-            fullName: isOutlierName(character.firstName)
-              ? getFullNameCorrected(character.firstName)
-              : capitalizeHouseNames(
-                  character.firstName +
-                    ' ' +
-                    standardizeHouseName(character.lastName)
-                ),
-          };
-        })
-      );
-    });
+    fetchApiData()
+      .then((tempData) => {
+        setData(
+          tempData.map((character) => {
+            return {
+              ...character,
+              lastName: capitalizeHouseNames(
+                standardizeHouseName(character.lastName)
+              ),
+              firstName: capitalizeHouseNames(
+                standardizeHouseName(character.firstName)
+              ),
+              fullName: isOutlierName(character.firstName)
+                ? getFullNameCorrected(character.firstName)
+                : capitalizeHouseNames(
+                    character.firstName +
+                      ' ' +
+                      standardizeHouseName(character.lastName)
+                  ),
+            };
+          })
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+        setData(null);
+      });
   }, []);
 
   useEffect(() => {
