@@ -1,3 +1,28 @@
+import { useEffect, useState } from 'react';
+import { Doughnut } from 'react-chartjs-2';
+import {
+  Chart,
+  DoughnutController,
+  ArcElement,
+  CategoryScale,
+  Decimation,
+  Filler,
+  Legend,
+  Title,
+  Tooltip,
+} from 'chart.js';
+
+Chart.register(
+  DoughnutController,
+  ArcElement,
+  CategoryScale,
+  Decimation,
+  Filler,
+  Legend,
+  Title,
+  Tooltip
+);
+
 const moreColors = [
   getRandomColor(),
   getRandomColor(),
@@ -119,41 +144,58 @@ function standardizeHouseName(name) {
 // url for the Thrones API
 const url = 'https://thronesapi.com/api/v2/Characters';
 
-const renderChart = async () => {
-  const fetchApiData = async () => {
+const fetchApiData = async () => {
+  let data;
+  try {
     const response = await fetch(url);
-    const data = await response.json();
-    return data;
-  };
-  const data = await fetchApiData();
-  console.log(data);
-  const familyCounts = data.reduce((acc, char) => {
-    const correctedFamilyName = standardizeHouseName(char.family); // fix the names if need be
-    if (char.family) {
-      acc[correctedFamilyName] = (acc[correctedFamilyName] || 0) + 1; // map by family name {houseName: count}
-    }
-    return acc;
-  }, {});
+    data = await response.json();
+  } catch (e) {
+    console.log('Fetch failed', e);
+    return [];
+  }
+  return data;
+};
 
-  const labels = Object.keys(familyCounts); // get keys aka houseNames
-  const familyData = Object.values(familyCounts); // get the values aka count
-  const donutChart = document.querySelector('.donut-chart'); // find where to append it
+const HousesDoughnut = () => {
+  const [data, setData] = useState(null);
 
-  new Chart(donutChart, {
-    type: 'doughnut',
-    data: {
+  const getTheData = async () => {
+    const tempData = await fetchApiData();
+
+    const familyCounts = tempData.reduce((acc, char) => {
+      const correctedFamilyName = standardizeHouseName(char.family);
+      if (char.family) {
+        acc[correctedFamilyName] = (acc[correctedFamilyName] || 0) + 1;
+      }
+      return acc;
+    }, {});
+
+    const labels = Object.keys(familyCounts);
+    const familyData = Object.values(familyCounts);
+
+    setData({
       labels: labels,
       datasets: [
         {
-          label: 'Number of people in house',
+          label: 'count',
           data: familyData,
           backgroundColor: backgroundColors,
           borderColor: borderColors,
           borderWidth: 1,
         },
       ],
-    },
-  });
+    });
+  };
+
+  useEffect(() => {
+    getTheData();
+  }, []);
+
+  return data !== null ? (
+    <Doughnut data={data} />
+  ) : (
+    <p className="text-center">loading...</p>
+  );
 };
 
-renderChart();
+export default HousesDoughnut;
