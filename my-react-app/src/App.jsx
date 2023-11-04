@@ -14,10 +14,10 @@ function App() {
           Home
         </Navbar.Brand>{' '}
         <Nav bg="dark">
-          <Nav.Link className="" as={Link} to="/search">
+          <Nav.Link className="" as={Link} to="/search" active={'/search'}>
             Search
           </Nav.Link>
-          <Nav.Link className="" as={Link} to="/houses">
+          <Nav.Link className="" as={Link} to="/houses" active={'/houses'}>
             Houses
           </Nav.Link>
         </Nav>
