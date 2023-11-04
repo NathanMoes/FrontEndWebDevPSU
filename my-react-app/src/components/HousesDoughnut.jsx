@@ -145,8 +145,13 @@ function standardizeHouseName(name) {
 const url = 'https://thronesapi.com/api/v2/Characters';
 
 const fetchApiData = async () => {
-  const response = await fetch(url);
-  const data = await response.json();
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+  } catch (e) {
+    console.log('Fetch failed', e);
+    return null;
+  }
   return data;
 };
 
