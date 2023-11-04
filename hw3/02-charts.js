@@ -145,7 +145,7 @@ const renderChart = async () => {
       labels: labels,
       datasets: [
         {
-          label: 'Thrones API houses doughnut',
+          label: 'Number of people in house',
           data: familyData,
           backgroundColor: backgroundColors,
           borderColor: borderColors,
