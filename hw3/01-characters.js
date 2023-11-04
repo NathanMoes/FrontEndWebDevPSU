@@ -13,10 +13,7 @@ fetch(url)
   }) // call fn to display it (append to the given element)
   .catch((error) => {
     console.log(error);
-  }) // catch any errors and throw them at the console
-  .finally(() => {
-    console.log('API call completed');
-  }); // why not have a finally? Sounds like a decent idea!
+  }); // catch any errors and throw them at the console
 
 // remove all the child elements for a given element
 function removeAllChildren(element) {
